@@ -3,6 +3,7 @@ syntax = "proto3";
 service Math {
     rpc Sqrt (SqrtRequest) returns (SqrtResponse) {}
     rpc Stat (stream StatRequest) returns (StatResponse) {}
+    rpc Factor (FactorRequest) returns (stream FactorResponse) {}
 }
 
 message SqrtRequest {
@@ -20,4 +21,12 @@ message StatRequest {
 message StatResponse {
     int32 sum = 1;
     int32 count = 2;
+}
+
+message FactorRequest {
+    int32 value = 1;
+}
+
+message FactorResponse {
+    int32 value = 1;
 }

@@ -38,6 +38,20 @@ func (s *server) Stat(stream pb.Math_StatServer) error {
 	}
 }
 
+func (s *server) Factor(in *pb.FactorRequest, stream pb.Math_FactorServer) error {
+	val := in.Value
+	var i int32
+	for i = 2; i*i < val; i++ {
+		for ; val%i == 0; val /= i {
+			stream.Send(&pb.FactorResponse{Value: i})
+		}
+	}
+	if val > 1 {
+		stream.Send(&pb.FactorResponse{Value: val})
+	}
+	return nil
+}
+
 func main() {
 	addr := os.Getenv("GRPC_BIND")
 	if addr == "" {

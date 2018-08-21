@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"io"
 	"log"
 	"os"
 	"time"
@@ -60,4 +62,17 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Println(reply.Count, reply.Sum)
+
+	stream1, err := c.Factor(ctx, &pb.FactorRequest{Value: 1080})
+	if err != nil {
+		log.Fatal(err)
+	}
+	for {
+		val, err := stream1.Recv()
+		if err == io.EOF {
+			break
+		}
+		fmt.Println(val.Value)
+	}
+
 }

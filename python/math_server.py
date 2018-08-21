@@ -8,6 +8,17 @@ import math_pb2
 import math_pb2_grpc
 
 
+def factor(val: int):
+    i = 2
+    while i*i < val:
+        while val % i == 0:
+            val //= i
+            yield i
+        i += 1
+    if val > 1:
+        yield val
+
+
 class Mather(math_pb2_grpc.MathServicer):
     def Sqrt(self, request, context):
         value = request.value
@@ -23,6 +34,13 @@ class Mather(math_pb2_grpc.MathServicer):
             summ += stat.value
             count += 1
         return math_pb2.StatResponse(sum=summ, count=count)
+
+    def Factor(self, request, context):
+        value = request.value
+        print(value)
+        for val in factor(value):
+            print(val)
+            yield math_pb2.FactorResponse(value=val)
 
 
 def serve(bind="0.0.0.0:50000"):

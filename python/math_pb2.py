@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='math.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nmath.proto\"\x1c\n\x0bSqrtRequest\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1d\n\x0cSqrtResponse\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1c\n\x0bStatRequest\x12\r\n\x05value\x18\x01 \x01(\x05\"*\n\x0cStatResponse\x12\x0b\n\x03sum\x18\x01 \x01(\x05\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\x32V\n\x04Math\x12%\n\x04Sqrt\x12\x0c.SqrtRequest\x1a\r.SqrtResponse\"\x00\x12\'\n\x04Stat\x12\x0c.StatRequest\x1a\r.StatResponse\"\x00(\x01\x62\x06proto3')
+  serialized_pb=_b('\n\nmath.proto\"\x1c\n\x0bSqrtRequest\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1d\n\x0cSqrtResponse\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1c\n\x0bStatRequest\x12\r\n\x05value\x18\x01 \x01(\x05\"*\n\x0cStatResponse\x12\x0b\n\x03sum\x18\x01 \x01(\x05\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\"\x1e\n\rFactorRequest\x12\r\n\x05value\x18\x01 \x01(\x05\"\x1f\n\x0e\x46\x61\x63torResponse\x12\r\n\x05value\x18\x01 \x01(\x05\x32\x85\x01\n\x04Math\x12%\n\x04Sqrt\x12\x0c.SqrtRequest\x1a\r.SqrtResponse\"\x00\x12\'\n\x04Stat\x12\x0c.StatRequest\x1a\r.StatResponse\"\x00(\x01\x12-\n\x06\x46\x61\x63tor\x12\x0e.FactorRequest\x1a\x0f.FactorResponse\"\x00\x30\x01\x62\x06proto3')
 )
 
 
@@ -155,10 +155,74 @@ _STATRESPONSE = _descriptor.Descriptor(
   serialized_end=147,
 )
 
+
+_FACTORREQUEST = _descriptor.Descriptor(
+  name='FactorRequest',
+  full_name='FactorRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='FactorRequest.value', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=149,
+  serialized_end=179,
+)
+
+
+_FACTORRESPONSE = _descriptor.Descriptor(
+  name='FactorResponse',
+  full_name='FactorResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='FactorResponse.value', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=181,
+  serialized_end=212,
+)
+
 DESCRIPTOR.message_types_by_name['SqrtRequest'] = _SQRTREQUEST
 DESCRIPTOR.message_types_by_name['SqrtResponse'] = _SQRTRESPONSE
 DESCRIPTOR.message_types_by_name['StatRequest'] = _STATREQUEST
 DESCRIPTOR.message_types_by_name['StatResponse'] = _STATRESPONSE
+DESCRIPTOR.message_types_by_name['FactorRequest'] = _FACTORREQUEST
+DESCRIPTOR.message_types_by_name['FactorResponse'] = _FACTORRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SqrtRequest = _reflection.GeneratedProtocolMessageType('SqrtRequest', (_message.Message,), dict(
@@ -189,6 +253,20 @@ StatResponse = _reflection.GeneratedProtocolMessageType('StatResponse', (_messag
   ))
 _sym_db.RegisterMessage(StatResponse)
 
+FactorRequest = _reflection.GeneratedProtocolMessageType('FactorRequest', (_message.Message,), dict(
+  DESCRIPTOR = _FACTORREQUEST,
+  __module__ = 'math_pb2'
+  # @@protoc_insertion_point(class_scope:FactorRequest)
+  ))
+_sym_db.RegisterMessage(FactorRequest)
+
+FactorResponse = _reflection.GeneratedProtocolMessageType('FactorResponse', (_message.Message,), dict(
+  DESCRIPTOR = _FACTORRESPONSE,
+  __module__ = 'math_pb2'
+  # @@protoc_insertion_point(class_scope:FactorResponse)
+  ))
+_sym_db.RegisterMessage(FactorResponse)
+
 
 
 _MATH = _descriptor.ServiceDescriptor(
@@ -197,8 +275,8 @@ _MATH = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=149,
-  serialized_end=235,
+  serialized_start=215,
+  serialized_end=348,
   methods=[
   _descriptor.MethodDescriptor(
     name='Sqrt',
@@ -216,6 +294,15 @@ _MATH = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_STATREQUEST,
     output_type=_STATRESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Factor',
+    full_name='Math.Factor',
+    index=2,
+    containing_service=None,
+    input_type=_FACTORREQUEST,
+    output_type=_FACTORRESPONSE,
     options=None,
   ),
 ])

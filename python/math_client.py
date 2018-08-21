@@ -28,6 +28,10 @@ def run(server):
         call_stat(stub, 1, 3, 1)
         call_stat(stub, 1, 10, 2)
 
+        factors = stub.Factor(math_pb2.FactorRequest(value=360))
+        for val in factors:
+            print(val.value)
+
 
 if __name__ == "__main__":
     server = os.getenv("GRPC_SERVER", "127.0.0.1:50000")
