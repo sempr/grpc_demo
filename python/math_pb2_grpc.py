@@ -19,6 +19,11 @@ class MathStub(object):
         request_serializer=math__pb2.SqrtRequest.SerializeToString,
         response_deserializer=math__pb2.SqrtResponse.FromString,
         )
+    self.Stat = channel.stream_unary(
+        '/Math/Stat',
+        request_serializer=math__pb2.StatRequest.SerializeToString,
+        response_deserializer=math__pb2.StatResponse.FromString,
+        )
 
 
 class MathServicer(object):
@@ -32,6 +37,13 @@ class MathServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Stat(self, request_iterator, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_MathServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -39,6 +51,11 @@ def add_MathServicer_to_server(servicer, server):
           servicer.Sqrt,
           request_deserializer=math__pb2.SqrtRequest.FromString,
           response_serializer=math__pb2.SqrtResponse.SerializeToString,
+      ),
+      'Stat': grpc.stream_unary_rpc_method_handler(
+          servicer.Stat,
+          request_deserializer=math__pb2.StatRequest.FromString,
+          response_serializer=math__pb2.StatResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

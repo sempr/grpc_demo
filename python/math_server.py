@@ -17,6 +17,13 @@ class Mather(math_pb2_grpc.MathServicer):
             return math_pb2.SqrtResponse(value=0)
         return math_pb2.SqrtResponse(value=math.sqrt(value))
 
+    def Stat(self, request_iterator, context):
+        summ, count = 0, 0
+        for stat in request_iterator:
+            summ += stat.value
+            count += 1
+        return math_pb2.StatResponse(sum=summ, count=count)
+
 
 def serve(bind="0.0.0.0:50000"):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

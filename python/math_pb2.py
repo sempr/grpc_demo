@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='math.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nmath.proto\"\x1c\n\x0bSqrtRequest\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1d\n\x0cSqrtResponse\x12\r\n\x05value\x18\x01 \x01(\x01\x32-\n\x04Math\x12%\n\x04Sqrt\x12\x0c.SqrtRequest\x1a\r.SqrtResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nmath.proto\"\x1c\n\x0bSqrtRequest\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1d\n\x0cSqrtResponse\x12\r\n\x05value\x18\x01 \x01(\x01\"\x1c\n\x0bStatRequest\x12\r\n\x05value\x18\x01 \x01(\x05\"*\n\x0cStatResponse\x12\x0b\n\x03sum\x18\x01 \x01(\x05\x12\r\n\x05\x63ount\x18\x02 \x01(\x05\x32V\n\x04Math\x12%\n\x04Sqrt\x12\x0c.SqrtRequest\x1a\r.SqrtResponse\"\x00\x12\'\n\x04Stat\x12\x0c.StatRequest\x1a\r.StatResponse\"\x00(\x01\x62\x06proto3')
 )
 
 
@@ -86,8 +86,79 @@ _SQRTRESPONSE = _descriptor.Descriptor(
   serialized_end=73,
 )
 
+
+_STATREQUEST = _descriptor.Descriptor(
+  name='StatRequest',
+  full_name='StatRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='StatRequest.value', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=75,
+  serialized_end=103,
+)
+
+
+_STATRESPONSE = _descriptor.Descriptor(
+  name='StatResponse',
+  full_name='StatResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='sum', full_name='StatResponse.sum', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='count', full_name='StatResponse.count', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=105,
+  serialized_end=147,
+)
+
 DESCRIPTOR.message_types_by_name['SqrtRequest'] = _SQRTREQUEST
 DESCRIPTOR.message_types_by_name['SqrtResponse'] = _SQRTRESPONSE
+DESCRIPTOR.message_types_by_name['StatRequest'] = _STATREQUEST
+DESCRIPTOR.message_types_by_name['StatResponse'] = _STATRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SqrtRequest = _reflection.GeneratedProtocolMessageType('SqrtRequest', (_message.Message,), dict(
@@ -104,6 +175,20 @@ SqrtResponse = _reflection.GeneratedProtocolMessageType('SqrtResponse', (_messag
   ))
 _sym_db.RegisterMessage(SqrtResponse)
 
+StatRequest = _reflection.GeneratedProtocolMessageType('StatRequest', (_message.Message,), dict(
+  DESCRIPTOR = _STATREQUEST,
+  __module__ = 'math_pb2'
+  # @@protoc_insertion_point(class_scope:StatRequest)
+  ))
+_sym_db.RegisterMessage(StatRequest)
+
+StatResponse = _reflection.GeneratedProtocolMessageType('StatResponse', (_message.Message,), dict(
+  DESCRIPTOR = _STATRESPONSE,
+  __module__ = 'math_pb2'
+  # @@protoc_insertion_point(class_scope:StatResponse)
+  ))
+_sym_db.RegisterMessage(StatResponse)
+
 
 
 _MATH = _descriptor.ServiceDescriptor(
@@ -112,8 +197,8 @@ _MATH = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=75,
-  serialized_end=120,
+  serialized_start=149,
+  serialized_end=235,
   methods=[
   _descriptor.MethodDescriptor(
     name='Sqrt',
@@ -122,6 +207,15 @@ _MATH = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_SQRTREQUEST,
     output_type=_SQRTRESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Stat',
+    full_name='Math.Stat',
+    index=1,
+    containing_service=None,
+    input_type=_STATREQUEST,
+    output_type=_STATRESPONSE,
     options=None,
   ),
 ])
