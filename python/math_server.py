@@ -10,7 +10,12 @@ import math_pb2_grpc
 
 class Mather(math_pb2_grpc.MathServicer):
     def Sqrt(self, request, context):
-        return math_pb2.SqrtResponse(value=math.sqrt(request.value))
+        value = request.value
+        if value < 0:
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            context.set_details("负数不能开平方根".encode("utf8"))
+            return math_pb2.SqrtResponse(value=0)
+        return math_pb2.SqrtResponse(value=math.sqrt(value))
 
 
 def serve(bind="0.0.0.0:50000"):
