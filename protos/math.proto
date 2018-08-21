@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service Math {
+    rpc Sqrt (SqrtRequest) returns (SqrtResponse) {}
+}
+
+message SqrtRequest {
+    double value = 1;
+}
+
+message SqrtResponse {
+    double value = 1;
+}
