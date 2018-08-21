@@ -34,7 +34,7 @@ func (m *SqrtRequest) Reset()         { *m = SqrtRequest{} }
 func (m *SqrtRequest) String() string { return proto.CompactTextString(m) }
 func (*SqrtRequest) ProtoMessage()    {}
 func (*SqrtRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_8b05201a7c029b9c, []int{0}
+	return fileDescriptor_math_bed127bcd720380c, []int{0}
 }
 func (m *SqrtRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SqrtRequest.Unmarshal(m, b)
@@ -72,7 +72,7 @@ func (m *SqrtResponse) Reset()         { *m = SqrtResponse{} }
 func (m *SqrtResponse) String() string { return proto.CompactTextString(m) }
 func (*SqrtResponse) ProtoMessage()    {}
 func (*SqrtResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_8b05201a7c029b9c, []int{1}
+	return fileDescriptor_math_bed127bcd720380c, []int{1}
 }
 func (m *SqrtResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SqrtResponse.Unmarshal(m, b)
@@ -99,9 +99,95 @@ func (m *SqrtResponse) GetValue() float64 {
 	return 0
 }
 
+type StatRequest struct {
+	Value                int32    `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *StatRequest) Reset()         { *m = StatRequest{} }
+func (m *StatRequest) String() string { return proto.CompactTextString(m) }
+func (*StatRequest) ProtoMessage()    {}
+func (*StatRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_math_bed127bcd720380c, []int{2}
+}
+func (m *StatRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatRequest.Unmarshal(m, b)
+}
+func (m *StatRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatRequest.Marshal(b, m, deterministic)
+}
+func (dst *StatRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatRequest.Merge(dst, src)
+}
+func (m *StatRequest) XXX_Size() int {
+	return xxx_messageInfo_StatRequest.Size(m)
+}
+func (m *StatRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StatRequest proto.InternalMessageInfo
+
+func (m *StatRequest) GetValue() int32 {
+	if m != nil {
+		return m.Value
+	}
+	return 0
+}
+
+type StatResponse struct {
+	Sum                  int32    `protobuf:"varint,1,opt,name=sum,proto3" json:"sum,omitempty"`
+	Count                int32    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *StatResponse) Reset()         { *m = StatResponse{} }
+func (m *StatResponse) String() string { return proto.CompactTextString(m) }
+func (*StatResponse) ProtoMessage()    {}
+func (*StatResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_math_bed127bcd720380c, []int{3}
+}
+func (m *StatResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatResponse.Unmarshal(m, b)
+}
+func (m *StatResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatResponse.Marshal(b, m, deterministic)
+}
+func (dst *StatResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatResponse.Merge(dst, src)
+}
+func (m *StatResponse) XXX_Size() int {
+	return xxx_messageInfo_StatResponse.Size(m)
+}
+func (m *StatResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StatResponse proto.InternalMessageInfo
+
+func (m *StatResponse) GetSum() int32 {
+	if m != nil {
+		return m.Sum
+	}
+	return 0
+}
+
+func (m *StatResponse) GetCount() int32 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*SqrtRequest)(nil), "SqrtRequest")
 	proto.RegisterType((*SqrtResponse)(nil), "SqrtResponse")
+	proto.RegisterType((*StatRequest)(nil), "StatRequest")
+	proto.RegisterType((*StatResponse)(nil), "StatResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -117,6 +203,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MathClient interface {
 	Sqrt(ctx context.Context, in *SqrtRequest, opts ...grpc.CallOption) (*SqrtResponse, error)
+	Stat(ctx context.Context, opts ...grpc.CallOption) (Math_StatClient, error)
 }
 
 type mathClient struct {
@@ -136,9 +223,44 @@ func (c *mathClient) Sqrt(ctx context.Context, in *SqrtRequest, opts ...grpc.Cal
 	return out, nil
 }
 
+func (c *mathClient) Stat(ctx context.Context, opts ...grpc.CallOption) (Math_StatClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Math_serviceDesc.Streams[0], "/Math/Stat", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &mathStatClient{stream}
+	return x, nil
+}
+
+type Math_StatClient interface {
+	Send(*StatRequest) error
+	CloseAndRecv() (*StatResponse, error)
+	grpc.ClientStream
+}
+
+type mathStatClient struct {
+	grpc.ClientStream
+}
+
+func (x *mathStatClient) Send(m *StatRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *mathStatClient) CloseAndRecv() (*StatResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(StatResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // MathServer is the server API for Math service.
 type MathServer interface {
 	Sqrt(context.Context, *SqrtRequest) (*SqrtResponse, error)
+	Stat(Math_StatServer) error
 }
 
 func RegisterMathServer(s *grpc.Server, srv MathServer) {
@@ -163,6 +285,32 @@ func _Math_Sqrt_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Math_Stat_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(MathServer).Stat(&mathStatServer{stream})
+}
+
+type Math_StatServer interface {
+	SendAndClose(*StatResponse) error
+	Recv() (*StatRequest, error)
+	grpc.ServerStream
+}
+
+type mathStatServer struct {
+	grpc.ServerStream
+}
+
+func (x *mathStatServer) SendAndClose(m *StatResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *mathStatServer) Recv() (*StatRequest, error) {
+	m := new(StatRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _Math_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Math",
 	HandlerType: (*MathServer)(nil),
@@ -172,20 +320,29 @@ var _Math_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Math_Sqrt_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Stat",
+			Handler:       _Math_Stat_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "math.proto",
 }
 
-func init() { proto.RegisterFile("math.proto", fileDescriptor_math_8b05201a7c029b9c) }
+func init() { proto.RegisterFile("math.proto", fileDescriptor_math_bed127bcd720380c) }
 
-var fileDescriptor_math_8b05201a7c029b9c = []byte{
-	// 115 bytes of a gzipped FileDescriptorProto
+var fileDescriptor_math_bed127bcd720380c = []byte{
+	// 173 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xca, 0x4d, 0x2c, 0xc9,
 	0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0x52, 0xe6, 0xe2, 0x0e, 0x2e, 0x2c, 0x2a, 0x09, 0x4a,
 	0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12, 0xe1, 0x62, 0x2d, 0x4b, 0xcc, 0x29, 0x4d, 0x95, 0x60,
 	0x54, 0x60, 0xd4, 0x60, 0x0c, 0x82, 0x70, 0x94, 0x54, 0xb8, 0x78, 0x20, 0x8a, 0x8a, 0x0b, 0xf2,
-	0xf3, 0x8a, 0x53, 0xb1, 0xab, 0x32, 0xd2, 0xe5, 0x62, 0xf1, 0x4d, 0x2c, 0xc9, 0x10, 0x52, 0xe5,
-	0x62, 0x01, 0xa9, 0x16, 0xe2, 0xd1, 0x43, 0x32, 0x59, 0x8a, 0x57, 0x0f, 0xd9, 0x08, 0x25, 0x86,
-	0x24, 0x36, 0xb0, 0x03, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x76, 0xae, 0x99, 0x3f, 0x8e,
-	0x00, 0x00, 0x00,
+	0xf3, 0x8a, 0x53, 0x71, 0xa8, 0x02, 0x19, 0x55, 0x92, 0x88, 0xdd, 0x28, 0x56, 0x98, 0x22, 0x33,
+	0x2e, 0x1e, 0x88, 0x22, 0xa8, 0x51, 0x02, 0x5c, 0xcc, 0xc5, 0xa5, 0xb9, 0x50, 0x35, 0x20, 0x26,
+	0x48, 0x5f, 0x72, 0x7e, 0x69, 0x5e, 0x89, 0x04, 0x13, 0x44, 0x1f, 0x98, 0x63, 0x14, 0xc6, 0xc5,
+	0xe2, 0x9b, 0x58, 0x92, 0x21, 0xa4, 0xca, 0xc5, 0x02, 0x72, 0x8a, 0x10, 0x8f, 0x1e, 0x92, 0xb3,
+	0xa5, 0x78, 0xf5, 0x90, 0xdd, 0xa7, 0xc4, 0x20, 0xa4, 0xce, 0xc5, 0x02, 0xb2, 0x06, 0xa4, 0x0c,
+	0xe1, 0x24, 0x90, 0x32, 0x24, 0xbb, 0x95, 0x18, 0x34, 0x18, 0x93, 0xd8, 0xc0, 0xc1, 0x60, 0x0c,
+	0x08, 0x00, 0x00, 0xff, 0xff, 0xe9, 0x31, 0xc4, 0xc5, 0x14, 0x01, 0x00, 0x00,
 }

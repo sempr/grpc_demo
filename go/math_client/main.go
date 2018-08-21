@@ -42,4 +42,22 @@ func main() {
 		log.Println(statusCode.Code(), statusCode.Message())
 	}
 
+	// stream code here
+
+	stream, err := c.Stat(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	stream.Send(&pb.StatRequest{Value: 1})
+	stream.Send(&pb.StatRequest{Value: 2})
+	stream.Send(&pb.StatRequest{Value: 1})
+	stream.Send(&pb.StatRequest{Value: 2})
+	stream.Send(&pb.StatRequest{Value: 1})
+
+	reply, err := stream.CloseAndRecv()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(reply.Count, reply.Sum)
 }

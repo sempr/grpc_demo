@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"io"
 	"log"
 	"math"
 	"net"
@@ -22,6 +23,19 @@ func (s *server) Sqrt(ctx context.Context, in *pb.SqrtRequest) (*pb.SqrtResponse
 		return nil, status.Errorf(codes.InvalidArgument, "说了不能为负数了")
 	}
 	return &pb.SqrtResponse{Value: math.Sqrt(in.Value)}, nil
+}
+
+func (s *server) Stat(stream pb.Math_StatServer) error {
+	var sum, count int32 = 0, 0
+	for {
+		in, err := stream.Recv()
+		if err == io.EOF {
+			stream.SendAndClose(&pb.StatResponse{Sum: sum, Count: count})
+			return nil
+		}
+		count++
+		sum += in.Value
+	}
 }
 
 func main() {
