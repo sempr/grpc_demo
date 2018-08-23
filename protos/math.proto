@@ -30,3 +30,17 @@ message FactorRequest {
 message FactorResponse {
     int32 value = 1;
 }
+
+
+service Math2 {
+    rpc Add (AddRequest) returns (AddResponse) {}
+}
+
+message AddRequest {
+    double a = 1;
+    double b = 2;
+}
+
+message AddResponse {
+    double c = 3;
+}

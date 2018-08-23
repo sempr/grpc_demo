@@ -4,6 +4,28 @@
 var grpc = require('grpc');
 var math_pb = require('./math_pb.js');
 
+function serialize_AddRequest(arg) {
+  if (!(arg instanceof math_pb.AddRequest)) {
+    throw new Error('Expected argument of type AddRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_AddRequest(buffer_arg) {
+  return math_pb.AddRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_AddResponse(arg) {
+  if (!(arg instanceof math_pb.AddResponse)) {
+    throw new Error('Expected argument of type AddResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_AddResponse(buffer_arg) {
+  return math_pb.AddResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_FactorRequest(arg) {
   if (!(arg instanceof math_pb.FactorRequest)) {
     throw new Error('Expected argument of type FactorRequest');
@@ -108,3 +130,18 @@ var MathService = exports.MathService = {
 };
 
 exports.MathClient = grpc.makeGenericClientConstructor(MathService);
+var Math2Service = exports.Math2Service = {
+  add: {
+    path: '/Math2/Add',
+    requestStream: false,
+    responseStream: false,
+    requestType: math_pb.AddRequest,
+    responseType: math_pb.AddResponse,
+    requestSerialize: serialize_AddRequest,
+    requestDeserialize: deserialize_AddRequest,
+    responseSerialize: serialize_AddResponse,
+    responseDeserialize: deserialize_AddResponse,
+  },
+};
+
+exports.Math2Client = grpc.makeGenericClientConstructor(Math2Service);

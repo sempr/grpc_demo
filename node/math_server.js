@@ -61,6 +61,13 @@ function factor(call, callback) {
     call.end();
 }
 
+function add(call, callback) {
+    var a = call.request.getA(), b = call.request.getB();
+    var reply = new messages.AddResponse();
+    reply.setC(a+b);
+    return callback(null, reply);
+}
+
 function main() {
     var server = new grpc.Server();
     var funcs = {
@@ -69,6 +76,11 @@ function main() {
         factor: factor
     };
     server.addService(services.MathService, funcs);
+    var funcs2 = {
+        add: add
+    }
+    server.addService(services.Math2Service, funcs2);
+
     server.bind("127.0.0.1:50000", grpc.ServerCredentials.createInsecure());
     server.start();
 }
