@@ -5,6 +5,12 @@ npm install -g grpc-tools
 grpc_tools_node_protoc --js_out=import_style=commonjs,binary:../node --grpc_out=../node --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` math.proto
 ```
 
+或直接运行
+
+``` bash
+bin/gen_node.sh
+```
+
 ### 运行
 
 #### 准备运行环境
