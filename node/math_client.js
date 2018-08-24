@@ -4,6 +4,7 @@ var services = require("./math_grpc_pb");
 var grpc = require("grpc");
 
 var client = new services.MathClient("127.0.0.1:50000", grpc.credentials.createInsecure());
+var client2 = new services.Math2Client("127.0.0.1:50000", grpc.credentials.createInsecure());
 
 var callSqrt = function(input) {
     var request = new messages.SqrtRequest();
@@ -66,6 +67,23 @@ var callFactor = function(input) {
     return promise;
 }
 
+var callAdd = function(a, b) {
+    var request = new messages.AddRequest();
+    request.setA(a);
+    request.setB(b);
+    var promise = new Promise(function(resolve, reject) {
+        client2.add(request, function(err, response) {
+            if (!err) {
+                resolve(response.getC());
+            } else {
+                console.erro(err);
+                reject(err);
+            }
+        })
+    });
+    return promise;
+}
+
 function main() {
     callSqrt(100).then(function(res){ 
         console.log(res); 
@@ -90,6 +108,12 @@ function main() {
     }, function() {
 
     });
+
+    callAdd(1,2).then(function(c) {
+        console.log(c);
+    }, function() {
+
+    })
 }
 
 main();
