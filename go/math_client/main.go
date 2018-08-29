@@ -13,14 +13,33 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+// UnaryClientInterceptor xxx
+func UnaryClientInterceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+	log.Printf("before invoker. method: %+v, request:%+v", method, req)
+	err := invoker(ctx, method, req, reply, cc, opts...)
+	log.Printf("after invoker. reply: %+v", reply)
+	return err
+}
+
+// StreamClientInterceptor yyy
+func StreamClientInterceptor(ctx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, streamer grpc.Streamer, opts ...grpc.CallOption) (grpc.ClientStream, error) {
+	log.Printf("before invoker. method: %+v, StreamDesc:%+v", method, desc)
+	clientStream, err := streamer(ctx, desc, cc, method, opts...)
+	log.Printf("before invoker. method: %+v", method)
+	return clientStream, err
+}
+
 func main() {
 
 	addr := os.Getenv("GRPC_SERVER")
 	if addr == "" {
-		addr = "127.0.0.1:50002"
+		addr = "127.0.0.1:50000"
 	}
 
-	conn, err := grpc.Dial(addr, grpc.WithInsecure())
+	conn, err := grpc.Dial(addr, grpc.WithInsecure(),
+		grpc.WithUnaryInterceptor(UnaryClientInterceptor),
+		grpc.WithStreamInterceptor(StreamClientInterceptor),
+	)
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
