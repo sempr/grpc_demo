@@ -68,6 +68,16 @@ func (s *server) Factor(in *pb.FactorRequest, stream pb.Math_FactorServer) error
 	return nil
 }
 
+type server2 struct{}
+
+func (s *server2) Add(ctx context.Context, in *pb.AddRequest) (*pb.AddResponse, error) {
+	return &pb.AddResponse{C: in.A + in.B}, nil
+}
+
+func (s *server2) Sub(ctx context.Context, in *pb.SubRequest) (*pb.SubResponse, error) {
+	return &pb.SubResponse{C: in.A - in.B}, nil
+}
+
 func main() {
 	addr := os.Getenv("GRPC_BIND")
 	if addr == "" {
@@ -84,6 +94,7 @@ func main() {
 		grpc.UnaryInterceptor(UnaryServerInterceptor))
 
 	pb.RegisterMathServer(s, &server{})
+	pb.RegisterMath2Server(s, &server2{})
 	reflection.Register(s)
 	log.Printf("Start listening on %s", addr)
 	if err = s.Serve(lis); err != nil {

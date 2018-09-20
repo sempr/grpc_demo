@@ -34,6 +34,7 @@ message FactorResponse {
 
 service Math2 {
     rpc Add (AddRequest) returns (AddResponse) {}
+    rpc Sub (SubRequest) returns (SubResponse) {}
 }
 
 message AddRequest {
@@ -43,4 +44,14 @@ message AddRequest {
 
 message AddResponse {
     double c = 3;
+}
+
+
+message SubRequest {
+    double a = 1;
+    double b = 2;
+}
+
+message SubResponse {
+    double c = 1;
 }

@@ -34,7 +34,7 @@ func (m *SqrtRequest) Reset()         { *m = SqrtRequest{} }
 func (m *SqrtRequest) String() string { return proto.CompactTextString(m) }
 func (*SqrtRequest) ProtoMessage()    {}
 func (*SqrtRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_178bd8ad938da8df, []int{0}
+	return fileDescriptor_math_a46407e97c3dde15, []int{0}
 }
 func (m *SqrtRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SqrtRequest.Unmarshal(m, b)
@@ -72,7 +72,7 @@ func (m *SqrtResponse) Reset()         { *m = SqrtResponse{} }
 func (m *SqrtResponse) String() string { return proto.CompactTextString(m) }
 func (*SqrtResponse) ProtoMessage()    {}
 func (*SqrtResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_178bd8ad938da8df, []int{1}
+	return fileDescriptor_math_a46407e97c3dde15, []int{1}
 }
 func (m *SqrtResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SqrtResponse.Unmarshal(m, b)
@@ -110,7 +110,7 @@ func (m *StatRequest) Reset()         { *m = StatRequest{} }
 func (m *StatRequest) String() string { return proto.CompactTextString(m) }
 func (*StatRequest) ProtoMessage()    {}
 func (*StatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_178bd8ad938da8df, []int{2}
+	return fileDescriptor_math_a46407e97c3dde15, []int{2}
 }
 func (m *StatRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StatRequest.Unmarshal(m, b)
@@ -149,7 +149,7 @@ func (m *StatResponse) Reset()         { *m = StatResponse{} }
 func (m *StatResponse) String() string { return proto.CompactTextString(m) }
 func (*StatResponse) ProtoMessage()    {}
 func (*StatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_178bd8ad938da8df, []int{3}
+	return fileDescriptor_math_a46407e97c3dde15, []int{3}
 }
 func (m *StatResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StatResponse.Unmarshal(m, b)
@@ -194,7 +194,7 @@ func (m *FactorRequest) Reset()         { *m = FactorRequest{} }
 func (m *FactorRequest) String() string { return proto.CompactTextString(m) }
 func (*FactorRequest) ProtoMessage()    {}
 func (*FactorRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_178bd8ad938da8df, []int{4}
+	return fileDescriptor_math_a46407e97c3dde15, []int{4}
 }
 func (m *FactorRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FactorRequest.Unmarshal(m, b)
@@ -232,7 +232,7 @@ func (m *FactorResponse) Reset()         { *m = FactorResponse{} }
 func (m *FactorResponse) String() string { return proto.CompactTextString(m) }
 func (*FactorResponse) ProtoMessage()    {}
 func (*FactorResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_math_178bd8ad938da8df, []int{5}
+	return fileDescriptor_math_a46407e97c3dde15, []int{5}
 }
 func (m *FactorResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FactorResponse.Unmarshal(m, b)
@@ -259,6 +259,174 @@ func (m *FactorResponse) GetValue() int32 {
 	return 0
 }
 
+type AddRequest struct {
+	A                    float64  `protobuf:"fixed64,1,opt,name=a,proto3" json:"a,omitempty"`
+	B                    float64  `protobuf:"fixed64,2,opt,name=b,proto3" json:"b,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AddRequest) Reset()         { *m = AddRequest{} }
+func (m *AddRequest) String() string { return proto.CompactTextString(m) }
+func (*AddRequest) ProtoMessage()    {}
+func (*AddRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_math_a46407e97c3dde15, []int{6}
+}
+func (m *AddRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddRequest.Unmarshal(m, b)
+}
+func (m *AddRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddRequest.Marshal(b, m, deterministic)
+}
+func (dst *AddRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddRequest.Merge(dst, src)
+}
+func (m *AddRequest) XXX_Size() int {
+	return xxx_messageInfo_AddRequest.Size(m)
+}
+func (m *AddRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddRequest proto.InternalMessageInfo
+
+func (m *AddRequest) GetA() float64 {
+	if m != nil {
+		return m.A
+	}
+	return 0
+}
+
+func (m *AddRequest) GetB() float64 {
+	if m != nil {
+		return m.B
+	}
+	return 0
+}
+
+type AddResponse struct {
+	C                    float64  `protobuf:"fixed64,3,opt,name=c,proto3" json:"c,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AddResponse) Reset()         { *m = AddResponse{} }
+func (m *AddResponse) String() string { return proto.CompactTextString(m) }
+func (*AddResponse) ProtoMessage()    {}
+func (*AddResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_math_a46407e97c3dde15, []int{7}
+}
+func (m *AddResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddResponse.Unmarshal(m, b)
+}
+func (m *AddResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddResponse.Marshal(b, m, deterministic)
+}
+func (dst *AddResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddResponse.Merge(dst, src)
+}
+func (m *AddResponse) XXX_Size() int {
+	return xxx_messageInfo_AddResponse.Size(m)
+}
+func (m *AddResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddResponse proto.InternalMessageInfo
+
+func (m *AddResponse) GetC() float64 {
+	if m != nil {
+		return m.C
+	}
+	return 0
+}
+
+type SubRequest struct {
+	A                    float64  `protobuf:"fixed64,1,opt,name=a,proto3" json:"a,omitempty"`
+	B                    float64  `protobuf:"fixed64,2,opt,name=b,proto3" json:"b,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SubRequest) Reset()         { *m = SubRequest{} }
+func (m *SubRequest) String() string { return proto.CompactTextString(m) }
+func (*SubRequest) ProtoMessage()    {}
+func (*SubRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_math_a46407e97c3dde15, []int{8}
+}
+func (m *SubRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SubRequest.Unmarshal(m, b)
+}
+func (m *SubRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SubRequest.Marshal(b, m, deterministic)
+}
+func (dst *SubRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SubRequest.Merge(dst, src)
+}
+func (m *SubRequest) XXX_Size() int {
+	return xxx_messageInfo_SubRequest.Size(m)
+}
+func (m *SubRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SubRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SubRequest proto.InternalMessageInfo
+
+func (m *SubRequest) GetA() float64 {
+	if m != nil {
+		return m.A
+	}
+	return 0
+}
+
+func (m *SubRequest) GetB() float64 {
+	if m != nil {
+		return m.B
+	}
+	return 0
+}
+
+type SubResponse struct {
+	C                    float64  `protobuf:"fixed64,1,opt,name=c,proto3" json:"c,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SubResponse) Reset()         { *m = SubResponse{} }
+func (m *SubResponse) String() string { return proto.CompactTextString(m) }
+func (*SubResponse) ProtoMessage()    {}
+func (*SubResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_math_a46407e97c3dde15, []int{9}
+}
+func (m *SubResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SubResponse.Unmarshal(m, b)
+}
+func (m *SubResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SubResponse.Marshal(b, m, deterministic)
+}
+func (dst *SubResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SubResponse.Merge(dst, src)
+}
+func (m *SubResponse) XXX_Size() int {
+	return xxx_messageInfo_SubResponse.Size(m)
+}
+func (m *SubResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SubResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SubResponse proto.InternalMessageInfo
+
+func (m *SubResponse) GetC() float64 {
+	if m != nil {
+		return m.C
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*SqrtRequest)(nil), "SqrtRequest")
 	proto.RegisterType((*SqrtResponse)(nil), "SqrtResponse")
@@ -266,6 +434,10 @@ func init() {
 	proto.RegisterType((*StatResponse)(nil), "StatResponse")
 	proto.RegisterType((*FactorRequest)(nil), "FactorRequest")
 	proto.RegisterType((*FactorResponse)(nil), "FactorResponse")
+	proto.RegisterType((*AddRequest)(nil), "AddRequest")
+	proto.RegisterType((*AddResponse)(nil), "AddResponse")
+	proto.RegisterType((*SubRequest)(nil), "SubRequest")
+	proto.RegisterType((*SubResponse)(nil), "SubResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -468,22 +640,124 @@ var _Math_serviceDesc = grpc.ServiceDesc{
 	Metadata: "math.proto",
 }
 
-func init() { proto.RegisterFile("math.proto", fileDescriptor_math_178bd8ad938da8df) }
+// Math2Client is the client API for Math2 service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type Math2Client interface {
+	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
+	Sub(ctx context.Context, in *SubRequest, opts ...grpc.CallOption) (*SubResponse, error)
+}
 
-var fileDescriptor_math_178bd8ad938da8df = []byte{
-	// 217 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xca, 0x4d, 0x2c, 0xc9,
-	0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0x52, 0xe6, 0xe2, 0x0e, 0x2e, 0x2c, 0x2a, 0x09, 0x4a,
-	0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12, 0xe1, 0x62, 0x2d, 0x4b, 0xcc, 0x29, 0x4d, 0x95, 0x60,
-	0x54, 0x60, 0xd4, 0x60, 0x0c, 0x82, 0x70, 0x94, 0x54, 0xb8, 0x78, 0x20, 0x8a, 0x8a, 0x0b, 0xf2,
-	0xf3, 0x8a, 0x53, 0x71, 0xa8, 0x02, 0x19, 0x55, 0x92, 0x88, 0xdd, 0x28, 0x56, 0x98, 0x22, 0x33,
-	0x2e, 0x1e, 0x88, 0x22, 0xa8, 0x51, 0x02, 0x5c, 0xcc, 0xc5, 0xa5, 0xb9, 0x50, 0x35, 0x20, 0x26,
-	0x48, 0x5f, 0x72, 0x7e, 0x69, 0x5e, 0x89, 0x04, 0x13, 0x44, 0x1f, 0x98, 0xa3, 0xa4, 0xca, 0xc5,
-	0xeb, 0x96, 0x98, 0x5c, 0x92, 0x5f, 0x84, 0xdf, 0x78, 0x35, 0x2e, 0x3e, 0x98, 0x32, 0x6c, 0x6e,
-	0x85, 0xa9, 0x33, 0x6a, 0x65, 0xe4, 0x62, 0xf1, 0x4d, 0x2c, 0xc9, 0x10, 0x52, 0xe5, 0x62, 0x01,
-	0x79, 0x4d, 0x88, 0x47, 0x0f, 0x29, 0x18, 0xa4, 0x78, 0xf5, 0x90, 0xfd, 0xab, 0xc4, 0x20, 0xa4,
-	0xce, 0xc5, 0x02, 0x72, 0x36, 0x48, 0x19, 0xc2, 0x8b, 0x20, 0x65, 0x48, 0x7e, 0x51, 0x62, 0xd0,
-	0x60, 0x14, 0xd2, 0xe5, 0x62, 0x83, 0x38, 0x40, 0x88, 0x4f, 0x0f, 0xc5, 0xc1, 0x52, 0xfc, 0x7a,
-	0xa8, 0x2e, 0x53, 0x62, 0x30, 0x60, 0x4c, 0x62, 0x03, 0xc7, 0x82, 0x31, 0x20, 0x00, 0x00, 0xff,
-	0xff, 0xcf, 0xc5, 0xca, 0x02, 0x93, 0x01, 0x00, 0x00,
+type math2Client struct {
+	cc *grpc.ClientConn
+}
+
+func NewMath2Client(cc *grpc.ClientConn) Math2Client {
+	return &math2Client{cc}
+}
+
+func (c *math2Client) Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
+	out := new(AddResponse)
+	err := c.cc.Invoke(ctx, "/Math2/Add", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *math2Client) Sub(ctx context.Context, in *SubRequest, opts ...grpc.CallOption) (*SubResponse, error) {
+	out := new(SubResponse)
+	err := c.cc.Invoke(ctx, "/Math2/Sub", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Math2Server is the server API for Math2 service.
+type Math2Server interface {
+	Add(context.Context, *AddRequest) (*AddResponse, error)
+	Sub(context.Context, *SubRequest) (*SubResponse, error)
+}
+
+func RegisterMath2Server(s *grpc.Server, srv Math2Server) {
+	s.RegisterService(&_Math2_serviceDesc, srv)
+}
+
+func _Math2_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(Math2Server).Add(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Math2/Add",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(Math2Server).Add(ctx, req.(*AddRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Math2_Sub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(Math2Server).Sub(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Math2/Sub",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(Math2Server).Sub(ctx, req.(*SubRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Math2_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "Math2",
+	HandlerType: (*Math2Server)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Add",
+			Handler:    _Math2_Add_Handler,
+		},
+		{
+			MethodName: "Sub",
+			Handler:    _Math2_Sub_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "math.proto",
+}
+
+func init() { proto.RegisterFile("math.proto", fileDescriptor_math_a46407e97c3dde15) }
+
+var fileDescriptor_math_a46407e97c3dde15 = []byte{
+	// 300 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xcd, 0x4e, 0xb4, 0x30,
+	0x14, 0x40, 0xb9, 0x1f, 0x30, 0x8b, 0x4b, 0x67, 0x3e, 0xd3, 0xb8, 0x20, 0xb8, 0x31, 0xd5, 0x51,
+	0x36, 0x36, 0x06, 0x13, 0xf7, 0xb3, 0x71, 0x67, 0x4c, 0xe0, 0x09, 0xca, 0x4f, 0x32, 0x0b, 0x67,
+	0x98, 0x81, 0xd6, 0x37, 0xf0, 0xbd, 0xcd, 0xa5, 0x20, 0x9d, 0x64, 0x34, 0xee, 0xb8, 0xe1, 0xf4,
+	0xd0, 0x1e, 0x8a, 0xb8, 0x53, 0x7a, 0x2b, 0x0f, 0x5d, 0xab, 0x5b, 0x71, 0x83, 0x51, 0x71, 0xec,
+	0x74, 0xde, 0x1c, 0x4d, 0xd3, 0x6b, 0x7e, 0x89, 0xe1, 0x87, 0x7a, 0x37, 0x4d, 0x0c, 0xd7, 0x90,
+	0x42, 0x6e, 0x07, 0x71, 0x8b, 0xcc, 0x42, 0xfd, 0xa1, 0xdd, 0xf7, 0xcd, 0x0f, 0x14, 0xa9, 0xb4,
+	0x3a, 0xaf, 0x0a, 0x27, 0xe8, 0x19, 0x99, 0x85, 0x46, 0xd5, 0x05, 0xfa, 0xbd, 0xd9, 0x8d, 0x0c,
+	0x3d, 0xd2, 0xba, 0xaa, 0x35, 0x7b, 0x1d, 0xff, 0xb3, 0xeb, 0x86, 0x41, 0xac, 0x71, 0xf9, 0xa2,
+	0x2a, 0xdd, 0x76, 0xbf, 0xeb, 0xef, 0x70, 0x35, 0x61, 0xe7, 0xf6, 0xfa, 0xcd, 0xa5, 0x88, 0x9b,
+	0xba, 0x9e, 0x5c, 0x0c, 0x41, 0x8d, 0x67, 0x01, 0x45, 0x53, 0x39, 0x7c, 0x1c, 0x72, 0x28, 0xc5,
+	0x15, 0x46, 0x03, 0x39, 0xea, 0x18, 0x42, 0x15, 0xfb, 0xf6, 0x65, 0x45, 0x9a, 0xc2, 0x94, 0x7f,
+	0xd4, 0x0c, 0xa4, 0xab, 0x19, 0xd1, 0x2a, 0xfb, 0x04, 0x0c, 0x5e, 0x95, 0xde, 0xf2, 0x35, 0x06,
+	0x14, 0x9a, 0x33, 0xe9, 0xfc, 0x94, 0x64, 0x29, 0xdd, 0xfa, 0xc2, 0xe3, 0xf7, 0x18, 0x50, 0x44,
+	0xc2, 0xe6, 0xe0, 0x84, 0x39, 0x65, 0x85, 0x97, 0x02, 0x7f, 0xc0, 0x85, 0xcd, 0xc1, 0x57, 0xf2,
+	0x24, 0x5f, 0xf2, 0x5f, 0x9e, 0x76, 0x12, 0xde, 0x23, 0x64, 0x6f, 0x18, 0xd2, 0x36, 0x32, 0x2e,
+	0xd0, 0xdf, 0xd4, 0x35, 0x8f, 0xe4, 0x1c, 0x29, 0x61, 0xd2, 0xe9, 0x20, 0x3c, 0x62, 0x0a, 0x53,
+	0xf2, 0x48, 0xce, 0x05, 0x12, 0x26, 0x9d, 0x43, 0x0a, 0xaf, 0x5c, 0x0c, 0x97, 0xec, 0xe9, 0x2b,
+	0x00, 0x00, 0xff, 0xff, 0xd2, 0xb3, 0xea, 0x32, 0x72, 0x02, 0x00, 0x00,
 }
